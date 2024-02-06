@@ -33,6 +33,8 @@ class DocumentSpec(models.Model):
     ScreenDpi = models.BigIntegerField(null=True)
     RowsPerPage = models.BigIntegerField(null=True)
 
+    no_admin = True
+
     def clean(self):
         if self.Code:
             existing = DocumentSpec.objects.filter(
@@ -49,7 +51,7 @@ class DocumentSpec(models.Model):
 class DocumentSpecFields(models.Model):
     DocumentSpec = models.ForeignKey(DocumentSpec, on_delete=models.PROTECT)
     Field = models.CharField(max_length=50)
-    Style = models.ForeignKey(FontStyle)
+    Style = models.ForeignKey(FontStyle, on_delete=models.PROTECT)
     types = ((0, 'Header'), (1, 'Detail'))
     Type = models.SmallIntegerField(choices=types)
     Width = models.IntegerField(null=True)
@@ -60,15 +62,19 @@ class DocumentSpecFields(models.Model):
     Alignment = models.SmallIntegerField(choices=_align)
     TextLimit = models.IntegerField(null=True)
 
+    no_admin = True
+
 
 class DocumentSpecLabels(models.Model):
     DocumentSpec = models.ForeignKey(DocumentSpec, on_delete=models.PROTECT)
     Text = models.CharField(max_length=255, blank=True)
-    Style = models.ForeignKey(FontStyle)
+    Style = models.ForeignKey(FontStyle, on_delete=models.PROTECT)
     Y = models.IntegerField(null=False, blank=False)
     X = models.IntegerField(null=False, blank=False)
     _align = ((0, 'Left'), (1, 'Centered'), (2, 'Right'))
     Alignment = models.SmallIntegerField(choices=_align)
+
+    no_admin = True
 
 
 class DocumentSpecRects(models.Model):
@@ -78,6 +84,8 @@ class DocumentSpecRects(models.Model):
     Y = models.IntegerField(null=False, blank=False)
     X = models.IntegerField(null=False, blank=False)
 
+    no_admin = True
+
 
 class DocumentSpecImages(models.Model):
     DocumentSpec = models.ForeignKey(DocumentSpec, on_delete=models.PROTECT)
@@ -86,3 +94,5 @@ class DocumentSpecImages(models.Model):
     Y = models.IntegerField(null=False, blank=False)
     X = models.IntegerField(null=False, blank=False)
     Filename = models.FileField(upload_to='images/')
+
+    no_admin = True
