@@ -6,6 +6,9 @@ class PDFFont(models.Model):
     Code = models.CharField(max_length=15, unique=True)
     Font = models.FileField(upload_to='fonts/')
 
+    def __str__(self):
+        return self.Code
+
 
 class FontStyle(models.Model):
     Code = models.CharField(max_length=15, unique=True)
@@ -13,6 +16,7 @@ class FontStyle(models.Model):
     Color = models.CharField(
         max_length=15, default="black", null=False, blank=False)
     Size = models.SmallIntegerField(default=12, null=False, blank=False)
+    Bold = models.BooleanField(default=False)
 
     def clean(self):
         if self.Code:
@@ -94,5 +98,12 @@ class DocumentSpecImages(models.Model):
     Y = models.IntegerField(null=False, blank=False)
     X = models.IntegerField(null=False, blank=False)
     Filename = models.FileField(upload_to='images/')
+
+    no_admin = True
+
+
+class DocumentSpecFonts(models.Model):
+    DocumentSpec = models.ForeignKey(DocumentSpec, on_delete=models.PROTECT)
+    PDFFont = models.ForeignKey(PDFFont, on_delete=models.PROTECT)
 
     no_admin = True

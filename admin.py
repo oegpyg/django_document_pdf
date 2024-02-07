@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.apps import apps
-from .models import DocumentSpec, DocumentSpecFields, DocumentSpecLabels, DocumentSpecRects, DocumentSpecImages
+from .models import DocumentSpec, DocumentSpecFields, DocumentSpecLabels, DocumentSpecRects, DocumentSpecImages, DocumentSpecFonts
 
 
 # Gets all the models registered in the specified application
@@ -36,12 +36,18 @@ class DocumentSpecImagesAdminTabular(admin.TabularInline):
     extra = 1
 
 
+class DocumentSpecFontsAdminTabular(admin.TabularInline):
+    model = DocumentSpecFonts
+    extra = 1
+
+
 class DocumentSpecAdmin(admin.ModelAdmin):
     list_display = ['Code']
     inlines = [DocumentSpecFieldsAdminTabular,
                DocumentSpecLabelsAdminTabular,
                DocumentSpecRectsAdminTabular,
-               DocumentSpecImagesAdminTabular]
+               DocumentSpecImagesAdminTabular,
+               DocumentSpecFontsAdminTabular]
 
 
 admin.site.register(DocumentSpec, DocumentSpecAdmin)
