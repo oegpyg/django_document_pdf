@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.db import models
 from django.core.exceptions import ValidationError
 
@@ -10,6 +11,20 @@ class PDFFont(models.Model):
         return self.Code
 
 
+class FontStyleManager(models.Manager):
+    def get(self, *args, **kwargs):
+        cache_key = f"fontstyle_{kwargs.get('Code')}"
+        cached_object = cache.get(cache_key)
+        if cached_object:
+            return cached_object
+        print(kwargs)
+        # If the object is not in the cache, retrieve it from the database
+        obj = super().get(*args, **kwargs)
+        # Add the retrieved object to the cache with 5 mins duraction
+        cache.set(cache_key, obj, timeout=300)
+        return obj
+
+
 class FontStyle(models.Model):
     Code = models.CharField(max_length=15, unique=True)
     PDFFont = models.ForeignKey(PDFFont, on_delete=models.PROTECT)
@@ -17,6 +32,8 @@ class FontStyle(models.Model):
         max_length=15, default="black", null=False, blank=False)
     Size = models.SmallIntegerField(default=12, null=False, blank=False)
     Bold = models.BooleanField(default=False)
+
+    objects = FontStyleManager()
 
     def clean(self):
         if self.Code:
@@ -63,7 +80,7 @@ class DocumentSpecFields(models.Model):
     X = models.IntegerField(null=False, blank=False)
     Decimals = models.IntegerField(default=0)
     _align = ((0, 'Left'), (1, 'Centered'), (2, 'Right'))
-    Alignment = models.SmallIntegerField(choices=_align)
+    Alignment = models.SmallIntegerField(choices=_align, default=0)
     TextLimit = models.IntegerField(null=True)
 
     no_admin = True
@@ -87,6 +104,8 @@ class DocumentSpecRects(models.Model):
     Width = models.IntegerField(null=False, blank=False)
     Y = models.IntegerField(null=False, blank=False)
     X = models.IntegerField(null=False, blank=False)
+    Rounded = models.BooleanField(default=False)
+    Radius = models.IntegerField(null=True, blank=True)
 
     no_admin = True
 
