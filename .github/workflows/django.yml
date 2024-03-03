@@ -23,7 +23,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     
     - name: Automatic requirements.txt for Python Project
-      uses: oegpyg/django_document_pdf@master
+      uses: oegpyg/django_document_pdf@main
 
       # Put an example of mandatory inputs here
       with:
