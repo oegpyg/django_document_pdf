@@ -1,6 +1,8 @@
 # django_document_pdf
 
 A simple way to generate PDF documents in Django apps.
+<img src="https://github.com/oegpyg/django_document_pdf_demo/blob/main/file.png" alt="Django Document PDF Demo" width="700"/>
+
 Use cases:
 - [x] Generate pdf reports
 - [x] Generate PDF documents from transactions, such as invoices or other documents derived from a transaction.
@@ -145,5 +147,3 @@ doc.generatePDF()
 
 
 [Demo](https://github.com/oegpyg/django_document_pdf_demo)
-### Screen of File generated with demo project
-![Screen of File generated with demo project](https://github.com/oegpyg/django_document_pdf_demo/blob/main/file.png)
