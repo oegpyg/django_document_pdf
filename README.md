@@ -70,18 +70,42 @@ class Supplier(models.Model):
 
 class PurchaseInvoice(models.Model):
     Supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
-    Total = models.FloatField()
+    Total = models.DecimalField(max_digits=10, decimal_places=2)
+    ...
+
+class Item(models.Model):
+    Code = models.CharField(max_length=20, unique=True)
+    Description = models.CharField(max_length=50)
+    Price = models.DecimalField(max_digits=10, decimal_places=2)
+
+class PurchaseInvoiceItems(models.Model):
+    PurchaseInvoice = models.ForeignKey(
+        PurchaseInvoice, on_delete=models.CASCADE)
+    Item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    Price = models.DecimalField(max_digits=10, decimal_places=2)
     ...
 ```
-In your Document Spec Fields definition to get a record fields your need to define like this:
+To get field of record:
 ```
 Field = Total
 ```
-To get a fields with de foreign key relation of the record:
+To get field with the foreign key relation of the record:
 ```
 Field = Supplier.Name
 ```
+    - Thats like `record.Supplier.Name`
 
 
+To get field of detail related record:
+```
+Field =  PurchaseInvoiceItems.Price
+```
+    - Thats like `record.purchaseinvoiceitems_set.all()[idx].Price`
+
+To get field with the foreing key relation of detail related record:
+```
+Field =  PurchaseInvoiceItems.Item.Description
+```
+    - Thats like `record.purchaseinvoiceitems_set.all()[idx].Item.Description`
 
 
