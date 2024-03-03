@@ -5,6 +5,11 @@ Use cases:
 - [x] Generate pdf reports
 - [x] Generate pdf documents from transactions such as invoices or other documents from a transaction.
 
+**To define the position within the document is based on X and Y coordinates.**
+![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/images_xy.png)
+![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/rects_xy.png)
+
+
 The final goal is to offer a drag&drop interface to design the document.
 
 This project is still in its early stages of development and all contributors are welcome.
@@ -57,6 +62,8 @@ Create a DocumentSpecs, fields, labels, rects, images
 - Labels: to define static texts.
 - Rects: to create lines, rectangles with borders and/or fills
 - Images: to add images or logos, you can also specify definitions such as transparency for watermarks.
+
+
 
 ### Fields from model instance
 
