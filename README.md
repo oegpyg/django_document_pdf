@@ -2,8 +2,8 @@
 
 A simple way to create pdf documents.
 Use cases:
-- Generate pdf reports
-- Generate pdf documents from transactions such as invoices or other documents from a transaction.
+- [x] Generate pdf reports
+- [x] Generate pdf documents from transactions such as invoices or other documents from a transaction.
 
 The final goal is to offer a drag&drop interface to design the document.
 
