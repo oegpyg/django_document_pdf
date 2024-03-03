@@ -67,22 +67,22 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 1. Manage Fonts and Styles
 
-- Create and upload your fonts.
-- Create your fonts styles.
+    - Create and upload your fonts.
+    - Create your fonts styles.
 
 2. Define Document Elements
 
-Create a DocumentSpecs, fields, labels, rects, images, fonts
+    Create a DocumentSpecs, fields, labels, rects, images, fonts
 
-- Fields: Access values from model instances.
-- Labels: Define static text elements.
-- Rects: Create lines, rectangles with borders and/or fills.
-- Images: Add images or logos, including transparency options for watermarks.
-- Fonts: Specify fonts to prevent loading unused ones.
+    - Fields: Access values from model instances.
+    - Labels: Define static text elements.
+    - Rects: Create lines, rectangles with borders and/or fills.
+    - Images: Add images or logos, including transparency options for watermarks.
+    - Fonts: Specify fonts to prevent loading unused ones.
 
 3. Accessing Data
 
-With `django_document_pdf`, you can access not only the fields of the record but also related fields through foreign key relationships.
+    With `django_document_pdf`, you can access not only the fields of the record but also related fields through foreign key relationships.
 
 ## Example:
 ```python
