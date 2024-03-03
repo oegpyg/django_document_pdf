@@ -93,26 +93,24 @@ class PurchaseInvoiceItems(models.Model):
     ...
 ```
 To get field of record:
-```python
-Field = Total
-```
+![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/1_ddp.png)
+
+
 To get field with the foreign key relation of the record:
-```python
-Field = Supplier.Name
-```
+![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/2_ddp.png)
+
 > Thats like `record.Supplier.Name`
 
 
 To get field of detail related record:
-```python
-Field =  PurchaseInvoiceItems.Price
-```
+![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/3_ddp.png)
+
 > Thats like `record.purchaseinvoiceitems_set.all()[idx].Price`
 
+
 To get field with the foreing key relation of detail related record:
-```python
-Field =  PurchaseInvoiceItems.Item.Description
-```
+![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/4_ddp.png)
+
 > Thats like `record.purchaseinvoiceitems_set.all()[idx].Item.Description`
 
 `Them` to make your document
