@@ -23,7 +23,6 @@ Currently, it has only been tested with Django 4.0 and higher. For older version
 
 ## Feedback and Bug Reports
 
-We encourage your input!
 - If you would like to see a feature added, please request it!
 - If you find a bug, please report it!
 
