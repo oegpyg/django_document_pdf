@@ -1,28 +1,34 @@
 # django_document_pdf
 
-A simple way to create pdf documents.
+A simple way to generate PDF documents in Django apps.
 Use cases:
 - [x] Generate pdf reports
-- [x] Generate pdf documents from transactions such as invoices or other documents from a transaction.
+- [x] Generate PDF documents from transactions, such as invoices or other documents derived from a transaction.
 
-**To define the position within the document is based on X and Y coordinates.**
+## Positioning in the Document
+
+**To define the position within the document, it uses X and Y coordinates.**
+- Image of X and Y coordinate usage:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/images_xy.png)
+- Image of rectangles with X and Y coordinates:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/rects_xy.png)
 
+## Project Status and Contribution
 
-The final goal is to offer a drag&drop interface to design the document.
+The final goal is to offer a drag-and-drop interface for designing the document, enabling collaborative document creation. This project is still in its early stages of development and welcomes all contributors.
 
-This project is still in its early stages of development and all contributors are welcome.
+## Compatibility
 
-It has only been tested in Django 4.0 and higher. For older versions of Django, use with caution.
+Currently, it has only been tested with Django 4.0 and higher. For older versions of Django, use with caution.
 
-If you would like to see something added, please request it! As I said, this is still in an early stage of development and I'm open to all suggestions.
+## Feedback and Bug Reports
 
-If you find a bug, please report it!
+- If you would like to see a feature added, please request it!
+- If you find a bug, please report it!
 
 ## Installation
 
-You will need to add `django_document_pdf` to your `INSTALLED_APPS` in your `settings.py` file:
+1. Add to `INSTALLED_APPS` in your `settings.py` file:
 
 ```python
 INSTALLED_APPS = [
@@ -32,7 +38,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-You will also need to add the following to your `urls.py` file:
+2. Include URLs in `urls.py` file:
 
 ```python
 from django.urls import path, include
@@ -44,10 +50,12 @@ urlpatterns = [
 ]
 ```
 
-## Installing
+## Setting Up Media Folders
 
+1. Create folders:
 Create **_fonts_** and **_images_** folder inside the MEDIA path.
 
+2. Configure settings:
 Make sure to include `MEDIA_URL` and `MEDIA_ROOT` settings in your project's `settings.py` file:
 ```python
 MEDIA_URL = '/media/'
@@ -56,24 +64,26 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 ## Usage
 
-Create and upload your fonts.
+1. Manage Fonts and Styles
 
-Create your fonts styles.
+    - Create and upload your fonts.
+    - Create your fonts styles.
 
-Create a DocumentSpecs, fields, labels, rects, images, fonts
+2. Define Document Elements
 
-- Fields: will take the values of the fields of an instance of a model.
-- Labels: to define static texts.
-- Rects: to create lines, rectangles with borders and/or fills
-- Images: to add images or logos, you can also specify definitions such as transparency for watermarks.
-- Fonts: is only to prevent load unused fonts
+    Create a DocumentSpecs, fields, labels, rects, images, fonts
 
+    - Fields: Access values from model instances.
+    - Labels: Define static text elements.
+    - Rects: Create lines, rectangles with borders and/or fills.
+    - Images: Add images or logos, including transparency options for watermarks.
+    - Fonts: Specify fonts to prevent loading unused ones.
 
-### Fields from model instance
+3. Accessing Data
 
-With django_document_pdf you can access not only the fields of the record but also the fields through the relationship by the foreign key.
+    With `django_document_pdf`, you can access not only the fields of the record but also related fields through foreign key relationships.
 
-#### Example:
+## Example:
 ```python
 class Supplier(models.Model):
     Code = models.CharField(max_length=20)
@@ -96,26 +106,28 @@ class PurchaseInvoiceItems(models.Model):
     Price = models.DecimalField(max_digits=10, decimal_places=2)
     ...
 ```
-To get field of record:
+
+### Accessing Fields:
+- Record Field:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/1_ddp.png)
 
 
-To get field with the foreign key relation of the record:
+- Foreign Key Field:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/2_ddp.png)
 
-> Thats like `record.Supplier.Name`
+    > Thats like `record.Supplier.Name`
 
 
-To get field of detail related record:
+- Detail Record Field:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/3_ddp.png)
 
-> Thats like `record.purchaseinvoiceitems_set.all()[idx].Price`
+    > Thats like `record.purchaseinvoiceitems_set.all()[idx].Price`
 
-
+- Related Detail Record Field:
 To get field with the foreing key relation of detail related record:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/4_ddp.png)
 
-> Thats like `record.purchaseinvoiceitems_set.all()[idx].Item.Description`
+    > Thats like `record.purchaseinvoiceitems_set.all()[idx].Item.Description`
 
 
 `Them` to make your document
