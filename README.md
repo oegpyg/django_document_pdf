@@ -95,6 +95,7 @@ class PurchaseInvoiceItems(models.Model):
 To get field of record:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/1_ddp.png)
 
+
 To get field with the foreign key relation of the record:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/2_ddp.png)
 
@@ -105,6 +106,7 @@ To get field of detail related record:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/3_ddp.png)
 
 > Thats like `record.purchaseinvoiceitems_set.all()[idx].Price`
+
 
 To get field with the foreing key relation of detail related record:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/4_ddp.png)
