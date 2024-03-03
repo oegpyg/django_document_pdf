@@ -116,19 +116,19 @@ class PurchaseInvoiceItems(models.Model):
 - Foreign Key Field:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/2_ddp.png)
 
-> Thats like `record.Supplier.Name`
+    > Thats like `record.Supplier.Name`
 
 
 - Detail Record Field:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/3_ddp.png)
 
-> Thats like `record.purchaseinvoiceitems_set.all()[idx].Price`
+    > Thats like `record.purchaseinvoiceitems_set.all()[idx].Price`
 
 - Related Detail Record Field:
 To get field with the foreing key relation of detail related record:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/4_ddp.png)
 
-> Thats like `record.purchaseinvoiceitems_set.all()[idx].Item.Description`
+    > Thats like `record.purchaseinvoiceitems_set.all()[idx].Item.Description`
 
 
 `Them` to make your document
