@@ -36,6 +36,7 @@ class DocumentPDF:
         if not active_fonts:
             raise AttributeError("Needs active fonts for current document")
         self.registerFonts(active_fonts)
+        # FontStyleOld.loadFontStyles(font_styles_def)
         required_keys = ['Width', 'Height']
 
         if all(getattr(document_spec, key) for key in required_keys):
@@ -63,9 +64,10 @@ class DocumentPDF:
         return curCanvas
 
     def lastPageNr(self):
+        # returns 0 if the record has no details.
+        # Otherwise returns the number of rows of the detail wich has the biggest number of rows
         rPerPage = self._RowsPerPage
-        if not rPerPage:
-            res = 1
+        res = 1
         self._lastPage = res
         return res
 
