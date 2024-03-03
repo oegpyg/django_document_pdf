@@ -39,7 +39,7 @@ urlpatterns = [
 ]
 ```
 
-## Usage
+## Installing
 
 Create **_fonts_** and **_images_** folder inside the MEDIA path.
 
@@ -48,3 +48,40 @@ Make sure to include `MEDIA_URL` and `MEDIA_ROOT` settings in your project's `se
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 ```
+
+## Usage
+
+Create a DocumentSpecs, fields, labels, rects, images
+
+- Fields: will take the values of the fields of an instance of a model.
+- Labels: to define static texts.
+- Rects: to create lines, rectangles with borders and/or fills
+- Images: to add images or logos, you can also specify definitions such as transparency for watermarks.
+
+### Fields from model instance
+
+With django_document_pdf you can access not only the fields of the record but also the fields through the relationship by the foreign key.
+
+####Example:
+```
+class Supplier(models.Model):
+    Code = models.CharField(max_length=20)
+    Name = models.CharField(max_length=100)
+
+class PurchaseInvoice(models.Model):
+    Supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
+    Total = models.FloatField()
+    ...
+```
+In your Document Spec Fields definition to get a record fields your need to define like this:
+```
+Field = Total
+```
+To get a fields with de foreign key relation of the record:
+```
+Supplier.Name
+```
+
+
+
+
