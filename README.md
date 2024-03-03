@@ -79,7 +79,7 @@ Field = Total
 ```
 To get a fields with de foreign key relation of the record:
 ```
-Supplier.Name
+Field = Supplier.Name
 ```
 
 
