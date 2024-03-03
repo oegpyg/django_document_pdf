@@ -108,4 +108,17 @@ Field =  PurchaseInvoiceItems.Item.Description
 ```
 > Thats like `record.purchaseinvoiceitems_set.all()[idx].Item.Description`
 
+`Them` to make your document
+```python
+from django_document_pdf.document_wrapper import DocumentPDF
+from .models import PurchaseInvoice
+
+record = PurchaseInvoice.objects.get(pk=1)
+doc = DocumentPDF(document_spec_code='Invoice_Test',
+                  filename='file.pdf',
+                  record=record)
+
+doc.generatePDF()
+```
+
 
