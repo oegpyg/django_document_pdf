@@ -19,7 +19,6 @@ class DocumentPDF:
     _title = ""
     _lastPage = False
     _Fields = {}
-    __fields__ = {}
     _record = None
     __cached__ = {}
 
@@ -36,7 +35,6 @@ class DocumentPDF:
         if not active_fonts:
             raise AttributeError("Needs active fonts for current document")
         self.registerFonts(active_fonts)
-        # FontStyleOld.loadFontStyles(font_styles_def)
         required_keys = ['Width', 'Height']
 
         if all(getattr(document_spec, key) for key in required_keys):
@@ -66,7 +64,6 @@ class DocumentPDF:
     def lastPageNr(self):
         # returns 0 if the record has no details.
         # Otherwise returns the number of rows of the detail wich has the biggest number of rows
-        rPerPage = self._RowsPerPage
         res = 1
         self._lastPage = res
         return res
@@ -160,7 +157,7 @@ class DocumentPDF:
                     curCanvas.drawString(xx, yy, dsfield.Field)
                     curCanvas.setFillColor(
                         self.get_color_with_opacity("black", 100))
-                # print('fvalues', dsfield.Field, fvalues)
+
                 max_rows = max(max_rows, len(fvalues))
                 fromidx = 0
                 toidx = 9999999
@@ -235,7 +232,6 @@ class DocumentPDF:
             for dslabel in self._Labels:
                 fstyle = FontStyle.objects.get(Code=dslabel.Style.Code)
                 if not fstyle:
-                    # print("No hay definiciones")
                     continue
                 x = dslabel.X
                 y = dslabel.Y
@@ -289,7 +285,6 @@ class DocumentPDF:
                         raise AttributeError(
                             "Needs define radius for rounded rects")
 
-            # cierra la pagina actua, lo que se imprimia despues se imprime en otra pagina
             curCanvas.showPage()
             cur_page += 1
 
@@ -318,7 +313,6 @@ class DocumentPDF:
             print(
                 f"(get_color_with_opacity)Color '{color}' not found. Skipped.")
             return None
-        # return PCMYKColor(50, 100, 0, 0).clone(alpha=opacity)
 
     @classmethod
     def registerFonts(cls, fonts):
