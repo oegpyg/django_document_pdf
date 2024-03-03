@@ -21,10 +21,14 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+    
+    - name: Automatic requirements.txt for Python Project
+      uses: oegpyg/django_document_pdf@main
+
+      # Put an example of mandatory inputs here
+      with:
+        PROJECT_PATH: project_folder   #default is the root of the repository
+        REQUIREMENT_PATH: project_folder/requirements.txt
     - name: Run Tests
       run: |
         python manage.py test
