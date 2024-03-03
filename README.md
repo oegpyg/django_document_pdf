@@ -106,6 +106,6 @@ To get field with the foreing key relation of detail related record:
 ```python
 Field =  PurchaseInvoiceItems.Item.Description
 ```
-> Thats like record.purchaseinvoiceitems_set.all()[idx].Item.Description
+> Thats like `record.purchaseinvoiceitems_set.all()[idx].Item.Description`
 
 
