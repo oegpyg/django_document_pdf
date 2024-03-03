@@ -56,13 +56,17 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 ## Usage
 
-Create a DocumentSpecs, fields, labels, rects, images
+Create and upload your fonts.
+
+Create your fonts styles.
+
+Create a DocumentSpecs, fields, labels, rects, images, fonts
 
 - Fields: will take the values of the fields of an instance of a model.
 - Labels: to define static texts.
 - Rects: to create lines, rectangles with borders and/or fills
 - Images: to add images or logos, you can also specify definitions such as transparency for watermarks.
-
+- Fonts: is only to prevent load unused fonts
 
 
 ### Fields from model instance
@@ -112,6 +116,7 @@ To get field with the foreing key relation of detail related record:
 ![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/4_ddp.png)
 
 > Thats like `record.purchaseinvoiceitems_set.all()[idx].Item.Description`
+
 
 `Them` to make your document
 ```python
