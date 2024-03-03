@@ -11,9 +11,9 @@ Use cases:
 
 **To define the position within the document, it uses X and Y coordinates.**
 - Image of X and Y coordinate usage:
-![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/images_xy.png)
+<img src="https://github.com/oegpyg/django_document_pdf/blob/main/pictures/images_xy.png" width="200">
 - Image of rectangles with X and Y coordinates:
-![](https://github.com/oegpyg/django_document_pdf/blob/main/pictures/rects_xy.png)
+<img src="https://github.com/oegpyg/django_document_pdf/blob/main/pictures/rects_xy.png" width="300">
 
 ## Project Status and Contribution
 
