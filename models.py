@@ -1,6 +1,7 @@
 from django.core.cache import cache
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class PDFFont(models.Model):
@@ -17,7 +18,6 @@ class FontStyleManager(models.Manager):
         cached_object = cache.get(cache_key)
         if cached_object:
             return cached_object
-        print(kwargs)
         # If the object is not in the cache, retrieve it from the database
         obj = super().get(*args, **kwargs)
         # Add the retrieved object to the cache with 5 mins duraction
@@ -53,6 +53,8 @@ class DocumentSpec(models.Model):
     Width = models.BigIntegerField(null=True)
     ScreenDpi = models.BigIntegerField(null=True)
     RowsPerPage = models.BigIntegerField(null=True)
+    ShowPlaceHolder = models.BooleanField(
+        default=False, help_text="The expected attribute is displayed in case it is not found.")
 
     no_admin = True
 
@@ -75,13 +77,13 @@ class DocumentSpecFields(models.Model):
     Style = models.ForeignKey(FontStyle, on_delete=models.PROTECT)
     types = ((0, 'Header'), (1, 'Detail'))
     Type = models.SmallIntegerField(choices=types)
-    Width = models.IntegerField(null=True)
+    Width = models.IntegerField(null=True, blank=True)
     Y = models.IntegerField(null=False, blank=False)
     X = models.IntegerField(null=False, blank=False)
     Decimals = models.IntegerField(default=0)
     _align = ((0, 'Left'), (1, 'Centered'), (2, 'Right'))
     Alignment = models.SmallIntegerField(choices=_align, default=0)
-    TextLimit = models.IntegerField(null=True)
+    TextLimit = models.IntegerField(null=True, blank=True)
 
     no_admin = True
 
@@ -106,6 +108,19 @@ class DocumentSpecRects(models.Model):
     X = models.IntegerField(null=False, blank=False)
     Rounded = models.BooleanField(default=False)
     Radius = models.IntegerField(null=True, blank=True)
+    Stroke = models.BooleanField(default=False)
+    StrokeColor = models.CharField(max_length=10, blank=True)
+    StrokeColorAlpha = models.IntegerField(default=100, validators=[
+        MinValueValidator(0),
+        MaxValueValidator(100),
+    ])
+    Fill = models.BooleanField(default=False)
+    FillColor = models.CharField(max_length=10, blank=True)
+    FillColorAlpha = models.IntegerField(default=100, validators=[
+        MinValueValidator(0),
+        MaxValueValidator(100),
+    ])
+    Show = models.BooleanField(default=True)
 
     no_admin = True
 
@@ -117,6 +132,9 @@ class DocumentSpecImages(models.Model):
     Y = models.IntegerField(null=False, blank=False)
     X = models.IntegerField(null=False, blank=False)
     Filename = models.FileField(upload_to='images/')
+    Watermark = models.BooleanField(default=False)
+    WatermarkOpacity = models.DecimalField(
+        max_digits=1, decimal_places=1, help_text="Between 0.* to 1", blank=True, null=True)
 
     no_admin = True
 
