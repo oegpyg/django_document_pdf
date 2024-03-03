@@ -122,4 +122,5 @@ doc.generatePDF()
 ```
 
 
-![Tests](https://github.com/oegpyg/django_document_pdf/blob/main/.github/workflows/django.yml)
+![Demo](https://github.com/oegpyg/django_document_pdf_demo)
+
