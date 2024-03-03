@@ -63,7 +63,8 @@ Create a DocumentSpecs, fields, labels, rects, images
 With django_document_pdf you can access not only the fields of the record but also the fields through the relationship by the foreign key.
 
 #### Example:
-```class Supplier(models.Model):
+```python
+class Supplier(models.Model):
     Code = models.CharField(max_length=20)
     Name = models.CharField(max_length=100)
 
@@ -85,21 +86,25 @@ class PurchaseInvoiceItems(models.Model):
     ...
 ```
 To get field of record:
-```Field = Total
+```python
+Field = Total
 ```
 To get field with the foreign key relation of the record:
-```Field = Supplier.Name
+```python
+Field = Supplier.Name
 ```
     - Thats like `record.Supplier.Name`
 
 
 To get field of detail related record:
-```Field =  PurchaseInvoiceItems.Price
+```python
+Field =  PurchaseInvoiceItems.Price
 ```
     - Thats like `record.purchaseinvoiceitems_set.all()[idx].Price`
 
 To get field with the foreing key relation of detail related record:
-```Field =  PurchaseInvoiceItems.Item.Description
+```python
+Field =  PurchaseInvoiceItems.Item.Description
 ```
     - Thats like `record.purchaseinvoiceitems_set.all()[idx].Item.Description
 
