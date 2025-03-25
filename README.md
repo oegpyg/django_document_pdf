@@ -9,7 +9,9 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/oegpyg/django_document_pdf)
 ![GitHub last commit](https://img.shields.io/github/last-commit/oegpyg/django_document_pdf?color=red)
 
+
 A simple way to generate PDF documents in Django apps.
+
 <img src="https://github.com/oegpyg/django_document_pdf_demo/blob/main/file.png" alt="Django Document PDF Demo" width="500"/>
 
 Use cases:
