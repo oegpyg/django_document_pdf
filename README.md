@@ -1,5 +1,14 @@
 # django_document_pdf
 
+
+![GitHub stars](https://img.shields.io/github/stars/oegpyg/django_document_pdf?style=social)
+![GitHub forks](https://img.shields.io/github/forks/oegpyg/django_document_pdf?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/oegpyg/django_document_pdf?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/oegpyg/django_document_pdf)
+![GitHub language count](https://img.shields.io/github/languages/count/oegpyg/django_document_pdf)
+![GitHub top language](https://img.shields.io/github/languages/top/oegpyg/django_document_pdf)
+![GitHub last commit](https://img.shields.io/github/last-commit/oegpyg/django_document_pdf?color=red)
+
 A simple way to generate PDF documents in Django apps.
 <img src="https://github.com/oegpyg/django_document_pdf_demo/blob/main/file.png" alt="Django Document PDF Demo" width="500"/>
 
